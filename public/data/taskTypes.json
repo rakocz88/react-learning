@@ -1,0 +1,7 @@
+{"types" : [
+  {"id":1,  "type" : "buyWeddingDress", "active" : false},
+  {"id":2, "type" : "lendCar", "active" : true},
+  {"id":3, "type" : "buyDrings", "active" : false},
+  {"id":4, "type" : "boyTort", "active" : false},
+  {"id":5, "type" : "personal", "active" : true}
+  ]}

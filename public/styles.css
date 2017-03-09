@@ -1,0 +1,32 @@
+body {
+  font: 16px/1 sans-serif;
+}
+#root {
+  height: 100%;
+}
+
+.TaskContainer{
+
+  margin-top: 20px;
+}
+
+.taskColumn{
+  border-style: solid;;
+  float: left;
+  width: 30%;
+  padding-right: 20px;
+}
+
+.taskItem {
+    border-style: dotted;
+    padding: 10px;
+    margin : 10px;
+}
+
+.filterActive {
+  color: blue;
+}
+
+.filterNotActive{
+  color: red;
+}
