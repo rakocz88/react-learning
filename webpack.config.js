@@ -12,13 +12,18 @@ var config = {
   },
   module: {
     loaders: [{
-      test: /\.jsx?$/,
+      test: /\.js$/,
       exclude: /node_modules/,
       loader: 'babel',
       query: {
         presets: ['es2015','react']
       }
-    }]
+    },
+      {
+        test :/\.less$/,
+      loader: 'style-loader!css-loader!less-loader'
+      }
+    ]
   },
   devServer: {
     contentBase: "./public",

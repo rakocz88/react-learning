@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import TaskItem from './TaskItem.js';
+import {Col} from 'elemental';
 
 export default class TaskColumn extends Component {
 
@@ -10,25 +11,24 @@ export default class TaskColumn extends Component {
   }
 
   filterTask(elem){
-    console.log(elem);
     return this.props.isTaskFilterActive(elem);
   }
 
   render(){
 
     let columnType = this.props.columnType;
-    console.log("tasks before filter");
-    console.log(this.props.tasks);
-    let filteredTasks = this.props.tasks.filter(task => task.status === columnType).filter(filteredTask => this.filterTask(filteredTask.type));
-    console.log("Filtered tasks");
-    console.log(filteredTasks);
-    return (
 
-      <div className = "taskColumn">
-      <ul>
+    let filteredTasks = this.props.tasks
+         .filter(task => task.status === columnType)
+         .filter(filteredTask => this.props.taskCallbacks.filter(filteredTask.type));
+
+
+    return (
+    <Col sm="32%" className = "task-column">
+
         {filteredTasks.map(task => <TaskItem key = {task.id} value = {task.name} />)}
-      </ul>
-      </div>
+
+      </Col>
     )
   }
 }

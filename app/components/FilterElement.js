@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import { Button } from 'elemental'
+
 
 export default class FilterElement extends Component {
 
@@ -7,16 +9,18 @@ export default class FilterElement extends Component {
     this.onFilterClicked= this.onFilterClicked.bind(this);
   }
 
-  onFilterClicked(){
-    this.props.onChangeFilter(this.props.name);
+  onFilterClicked(event){
+
+    this.props.taskCallbacks.changeFilter(this.props.name);
   }
 
-  render (){
+ 
 
+  render (){
     let name = this.props.name;
     let isActive = this.props.active;
     return (
-          <button className = {isActive? 'filterActive' : 'filterNotActive'} onClick = {this.onFilterClicked}> {name}</button>
+          <Button  className= "filter-button" type = {isActive? 'primary' : 'hollow-primary'} onClick = {this.onFilterClicked}> {name}</Button>
     )
   }
 }

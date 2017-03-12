@@ -1,37 +1,33 @@
 import React, {Component, PropTypes} from 'react' ;
-import TaskColumn from './TaskColumn.js'
+import TaskColumn from './TaskColumn.js';
+import {Row} from 'elemental';
 
 
 export default class TaskBoard extends Component {
 
-  constructor(props){
-    super(props);
-    this.isTaskFilterActiveContainer2 = this.isTaskFilterActiveContainer2.bind(this);
-  }
+    constructor(props) {
+        super(props);
+    }
 
 
-  isTaskFilterActiveContainer2(args){
-    this.props.isTaskFilterActiveContainer(args);
-  }
+    render() {
+        return (
+            <div>
+                <Row>
 
-
-
-
-
-
-
-  render(){
-    console.log('called render');
-    return (
-      <div>
-        <TaskColumn tasks = {this.props.tasks} columnType = 'new' isTaskFilterActive = {this.isTaskFilterActiveContainer2}>  </TaskColumn>
-        <TaskColumn tasks = {this.props.tasks} columnType = 'inProgress' isTaskFilterActive = {this.isTaskFilterActiveContainer2}>  </TaskColumn>
-        <TaskColumn tasks = {this.props.tasks} columnType = 'done' isTaskFilterActive = {this.isTaskFilterActiveContainer2}>  </TaskColumn>
-      </div>
-    );
-  }
+                    <TaskColumn tasks={this.props.tasks} columnType='new'
+                                taskCallbacks={this.props.taskCallbacks}> </TaskColumn>
+                    <TaskColumn tasks={this.props.tasks} columnType='inProgress'
+                                taskCallbacks={this.props.taskCallbacks}> </TaskColumn>
+                    <TaskColumn tasks={this.props.tasks} columnType='done'
+                                taskCallbacks={this.props.taskCallbacks}> </TaskColumn>
+                </Row>
+            </div>
+        )
+            ;
+    }
 }
 
 TaskBoard.propTypes = {
-  tasks: PropTypes.arrayOf(PropTypes.object)
+    tasks: PropTypes.arrayOf(PropTypes.object)
 }
