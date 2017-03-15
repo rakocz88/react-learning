@@ -1,7 +1,7 @@
 {"tasks" : [
-  {"id":1, "name":"Buy Wedding Dress", "type" : "buyWeddingDress", "status" : "new"},
-  {"id":2, "name":"Lend Car", "type" : "lendCar", "status" : "inProgress"},
-  {"id":3, "name":"Buy vodka", "type" : "buyDrings", "status" : "done"},
-  {"id":4, "name":"Buy Tort", "type" : "boyTort", "status" : "done"},
-  {"id":5, "name":"FInd swiadek", "type" : "personal", "status" : "inProgress"}
+  {"id":1, "name":"Buy Wedding Dress", "type" : "buyWeddingDress", "description": "cos" , "status" : "new"},
+  {"id":2, "name":"Lend Car", "type" : "lendCar" , "description": "cos", "status" : "inProgress"},
+  {"id":3, "name":"Buy vodka", "type" : "buyDrings" , "description": "cos", "status" : "done"},
+  {"id":4, "name":"Buy Tort", "type" : "boyTort" , "description": "cos", "status" : "done"},
+  {"id":5, "name":"FInd swiadek", "type" : "personal" , "description": "cos", "status" : "inProgress"}
   ]}

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Button } from 'elemental'
+
 
 
 export default class FilterElement extends Component {
@@ -20,7 +20,7 @@ export default class FilterElement extends Component {
     let name = this.props.name;
     let isActive = this.props.active;
     return (
-          <Button  className= "filter-button" type = {isActive? 'primary' : 'hollow-primary'} onClick = {this.onFilterClicked}> {name}</Button>
+          <button   className = {isActive? 'waves-effect waves-light btn-flat orange' : 'waves-effect btn-flat'} onClick = {this.onFilterClicked}> {name}</button>
     )
   }
 }

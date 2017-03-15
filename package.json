@@ -17,6 +17,8 @@
     "css-loader": "^0.27.1",
     "less": "^2.7.2",
     "less-loader": "^3.0.0",
+    "node-sass": "^3.10.1",
+    "sass-loader": "^4.0.2",
     "style-loader": "^0.13.2",
     "webpack": "~1.12.*",
     "webpack-dev-server": "~1.14.*"

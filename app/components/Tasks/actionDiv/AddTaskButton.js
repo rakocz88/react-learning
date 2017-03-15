@@ -22,8 +22,8 @@ export default class AddTaskButton extends Component {
     render() {
         return (
             <div>
-                <Button type="primary" onClick={this.showAddTaskModal}>Add Task</Button>
-               <AddTaskModal isOpen = {this.state.showModal} callbacks = {{toogleModal : this.showAddTaskModal}} />
+                <button className="waves-effect waves-light btn" onClick={this.showAddTaskModal}>Add Task</button>
+               <AddTaskModal isOpen = {this.state.showModal} callbacks = {{toogleModal : this.showAddTaskModal, addTask : this.props.callbacks.addTask}}  types={this.props.types}/>
             </div>
         );
     }

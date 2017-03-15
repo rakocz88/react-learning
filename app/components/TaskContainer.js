@@ -14,7 +14,14 @@ export default class TaskContainer extends Component {
         this.changeFilterValue = this.changeFilterValue.bind(this);
         this.addNewTask = this.addNewTask.bind(this);
     }
-    addNewTask(){
+    addNewTask(task){
+      
+        let oldState = this.state;
+        let newState = update(this.state,  { tasks : {
+            $push : [task]}});
+        console.log(newState);
+        this.setState(newState);
+        console.log(this.state);
     }
 
     filterActiveTasks(elem) {
@@ -39,6 +46,7 @@ export default class TaskContainer extends Component {
         this.setState({types :  changedFilterElems});
     }
 
+
     componentDidMount() {
         fetch('./data/tasks.json')
             .then(response => response.json())
@@ -49,11 +57,12 @@ export default class TaskContainer extends Component {
     }
 
     render() {
+        let tasks = this.state.tasks;
         return (
-            <div className="TaskContainer">
+            <div className="container">
                 <TaskTypeFilter types={this.state.types}  taskCallbacks  = { {changeFilter:this.changeFilterValue} }/>
-                <TaskActionsDiv />
-                <TaskBoard tasks={this.state.tasks} taskCallbacks={{filter:  this.filterActiveTasks}}/>
+                <TaskActionsDiv types={this.state.types} callbacks = {{addTask : this.addNewTask}} />
+                <TaskBoard tasks={tasks} taskCallbacks={{filter:  this.filterActiveTasks}}/>
 
 
             </div>

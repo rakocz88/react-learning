@@ -1,0 +1,39 @@
+$color1: #00b0ff;
+$color2: black;
+$color3: #00d6b2;
+$color4: #03a9f4;
+
+.standard-border {
+  border: solid;
+  border-color: $color2;
+  border-radius: 3px;
+}
+
+.task-column {
+  @extend .standard-border;
+  background: $color3;
+}
+
+.task-element {
+  @extend .standard-border;
+  background: $color4;
+  margin: 10px;
+}
+
+.filter-buttons-container {
+  @extend .standard-border;
+  background: $color4;
+  background: $color3;
+
+}
+
+.buttons-acions-div{
+  @extend .standard-border;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center
+}
+
+select.popup-select{
+  display: block;
+}

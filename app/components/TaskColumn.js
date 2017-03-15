@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import TaskItem from './TaskItem.js';
-import {Col} from 'elemental';
+
 
 export default class TaskColumn extends Component {
 
@@ -24,11 +24,11 @@ export default class TaskColumn extends Component {
 
 
     return (
-    <Col sm="32%" className = "task-column">
+    <div className="col s3 task-column">
 
         {filteredTasks.map(task => <TaskItem key = {task.id} value = {task.name} />)}
 
-      </Col>
+      </div>
     )
   }
 }

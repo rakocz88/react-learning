@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react' ;
 import TaskColumn from './TaskColumn.js';
-import {Row} from 'elemental';
+
 
 
 export default class TaskBoard extends Component {
@@ -11,9 +11,10 @@ export default class TaskBoard extends Component {
 
 
     render() {
+        console.log("RENDER TASK BOARD");
         return (
             <div>
-                <Row>
+                <div className="row">
 
                     <TaskColumn tasks={this.props.tasks} columnType='new'
                                 taskCallbacks={this.props.taskCallbacks}> </TaskColumn>
@@ -21,7 +22,7 @@ export default class TaskBoard extends Component {
                                 taskCallbacks={this.props.taskCallbacks}> </TaskColumn>
                     <TaskColumn tasks={this.props.tasks} columnType='done'
                                 taskCallbacks={this.props.taskCallbacks}> </TaskColumn>
-                </Row>
+                </div>
             </div>
         )
             ;

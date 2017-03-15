@@ -13,14 +13,16 @@ export default class TaskTypeFilter extends Component{
   render (){
     let allFilters = this.props.types;
     return (
-      <div className="filter-buttons-container">
-      { allFilters.map(filter => <FilterElement key={filter.id}
-                                                name={filter.type}
-                                                active={filter.active}
-                                                taskCallbacks={this.props.taskCallbacks}/>
-      )
-      }
-         </div>
+        <div className = "">
+          <div className="filter-buttons-container">
+          { allFilters.map(filter => <FilterElement key={filter.id}
+                                                    name={filter.type}
+                                                    active={filter.active}
+                                                    taskCallbacks={this.props.taskCallbacks}/>
+          )
+          }
+             </div>
+          </div>
     )
   }
 
