@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 
 
 
+
 export default class FilterElement extends Component {
 
   constructor(props){
@@ -20,7 +21,7 @@ export default class FilterElement extends Component {
     let name = this.props.name;
     let isActive = this.props.active;
     return (
-          <button   className = {isActive? 'waves-effect waves-light btn-flat orange' : 'waves-effect btn-flat'} onClick = {this.onFilterClicked}> {name}</button>
+          <button   className = {isActive? 'waves-effect waves-light btn-flat orange filter-button' : 'waves-effect btn-flat filter-button'} onClick = {this.onFilterClicked}> {name}</button>
     )
   }
 }

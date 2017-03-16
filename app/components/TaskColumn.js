@@ -24,7 +24,7 @@ export default class TaskColumn extends Component {
 
 
     return (
-    <div className="col s3 task-column">
+    <div className="col s4 task-column">
 
         {filteredTasks.map(task => <TaskItem key = {task.id} value = {task.name} />)}
 

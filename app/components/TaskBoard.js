@@ -11,9 +11,8 @@ export default class TaskBoard extends Component {
 
 
     render() {
-        console.log("RENDER TASK BOARD");
         return (
-            <div>
+            <div className="task-board">
                 <div className="row">
 
                     <TaskColumn tasks={this.props.tasks} columnType='new'

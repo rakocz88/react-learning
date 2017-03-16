@@ -1,17 +1,21 @@
-$color1: #00b0ff;
-$color2: black;
-$color3: #00d6b2;
-$color4: #03a9f4;
+$color1: #FFE6AF;
+$color2: #FFE497;
+$color3: #430002;
+$color4: #220506;
+
+
 
 .standard-border {
   border: solid;
   border-color: $color2;
-  border-radius: 3px;
+  border-radius: 6px;
 }
 
 .task-column {
   @extend .standard-border;
   background: $color3;
+  margin-left : 0;
+  margin-right: 0;
 }
 
 .task-element {
@@ -36,4 +40,41 @@ $color4: #03a9f4;
 
 select.popup-select{
   display: block;
+}
+
+.task-board{
+  @extend .standard-border;
+  text-align: center;
+  left: 50%;
+}
+
+.filter-button{
+  margin: 5px;
+}
+
+
+
+.task-element-appear {
+  opacity: 0;
+  transform: scale(0,0);
+  transition: 1s;
+}
+
+.task-element-appear {
+  opacity: 0;
+  transform: scale(0,0);
+  transition: 1s;
+}
+.task-element-appear.task-element-appear-active {
+  opacity: 1;
+  transform: scale(1,1);
+  transition: 1s;
+}
+
+
+
+.task-element-action:hover{
+  transition: 500ms;
+  transform : scale(1.4,1.4);
+  z-index: 999;
 }
