@@ -3,8 +3,6 @@ $color2: #FFE497;
 $color3: #430002;
 $color4: #220506;
 
-
-
 .standard-border {
   border: solid;
   border-color: $color2;
@@ -14,8 +12,13 @@ $color4: #220506;
 .task-column {
   @extend .standard-border;
   background: $color3;
-  margin-left : 0;
+  margin-left: 0;
   margin-right: 0;
+
+}
+
+div.task-column {
+  min-height: 200px!important;
 }
 
 .task-element {
@@ -31,50 +34,71 @@ $color4: #220506;
 
 }
 
-.buttons-acions-div{
+.buttons-acions-div {
   @extend .standard-border;
   margin-top: 10px;
   margin-bottom: 10px;
   text-align: center
 }
 
-select.popup-select{
+select.popup-select {
   display: block;
 }
 
-.task-board{
+.task-board {
   @extend .standard-border;
   text-align: center;
   left: 50%;
 }
 
-.filter-button{
+.filter-button {
   margin: 5px;
 }
 
-
+.column-header {
+  color: #90CAF9;
+}
 
 .task-element-appear {
   opacity: 0;
-  transform: scale(0,0);
+  transform: scale(0, 0);
   transition: 1s;
 }
 
 .task-element-appear {
   opacity: 0;
-  transform: scale(0,0);
+  transform: scale(0, 0);
   transition: 1s;
 }
+
 .task-element-appear.task-element-appear-active {
   opacity: 1;
-  transform: scale(1,1);
+  transform: scale(1, 1);
   transition: 1s;
 }
 
-
-
-.task-element-action:hover{
+.task-element-action:hover {
   transition: 500ms;
-  transform : scale(1.4,1.4);
+  transform: scale(1.4, 1.4);
   z-index: 999;
+}
+
+.dragged-item {
+  background-color: gainsboro;
+}
+
+.can-drop {
+  background-color: #00E676;
+}
+
+.cant-drop {
+  background-color: red;
+}
+
+.taskItemHeader {
+  font-size: 10px;
+}
+
+.taskItemText {
+  font-size: 6px;
 }

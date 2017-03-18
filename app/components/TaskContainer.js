@@ -4,24 +4,38 @@ import TaskBoard from './TaskBoard.js';
 import TaskTypeFilter from './TaskTypeFilter.js';
 import update from 'react-addons-update';
 import TaskActionsDiv from './Tasks/actionDiv/TaskActionsDiv';
+import SDCMenu from './menu/SDCMenu.js';
+import { DragDropContext } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 
 
-export default class TaskContainer extends Component {
+class TaskContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {tasks: [], types: []};
         this.filterActiveTasks = this.filterActiveTasks.bind(this);
         this.changeFilterValue = this.changeFilterValue.bind(this);
         this.addNewTask = this.addNewTask.bind(this);
+        this.updateTaskStatus = this.updateTaskStatus.bind(this);
     }
     addNewTask(task){
-      
+        console.log("Add new task");
         let oldState = this.state;
         let newState = update(this.state,  { tasks : {
             $push : [task]}});
-        console.log(newState);
         this.setState(newState);
-        console.log(this.state);
+    }
+
+    updateTaskStatus(taskId, taskStatus){
+        let oldState = this.state;
+        console.log("Task id is " + taskId);
+        console.log(this.state.tasks);
+        let index = this.state.tasks.findIndex(task => task.id == taskId);
+        console.log("index");
+        console.log(index);
+        console.log(this.state.tasks[index]);
+        let newState = update(this.state  , {tasks : {[index] : {$merge : {status : taskStatus}}}});
+        this.setState(newState);
     }
 
     filterActiveTasks(elem) {
@@ -58,14 +72,18 @@ export default class TaskContainer extends Component {
 
     render() {
         let tasks = this.state.tasks;
+
         return (
             <div className="container">
+                <SDCMenu></SDCMenu>
                 <TaskTypeFilter types={this.state.types}  taskCallbacks  = { {changeFilter:this.changeFilterValue} }/>
                 <TaskActionsDiv types={this.state.types} callbacks = {{addTask : this.addNewTask}} />
-                <TaskBoard tasks={tasks} taskCallbacks={{filter:  this.filterActiveTasks}}/>
+                <TaskBoard tasks={tasks} taskCallbacks={{filter:  this.filterActiveTasks, updateTaskStatus : this.updateTaskStatus}}/>
 
 
             </div>
         )
     }
 }
+
+export default DragDropContext(HTML5Backend)(TaskContainer);

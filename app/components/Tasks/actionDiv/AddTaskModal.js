@@ -9,9 +9,10 @@ export default class AddTaskModal extends Component {
 
     constructor() {
         super();
-        this.state = {formFields: {id: "", name: "", description: "", status: "new", type: ""}};
+        this.state = {formFields: {id: "", name: "", desc: "", status: "new", type: ""}};
         this.handleSelect = this.handleSelect.bind(this);
         this.onTaskNameChange = this.onTaskNameChange.bind(this);
+        this.onTaskDescChange = this.onTaskDescChange.bind(this);
         this.submitForm = this.submitForm.bind(this);
         this.validateBeforeSubmit = this.validateBeforeSubmit.bind(this);
     }
@@ -41,7 +42,9 @@ export default class AddTaskModal extends Component {
             newTask.id = Date.now();
             newTask.status = "new";
             this.props.callbacks.addTask(newTask);
-            this.setState({formFields: {id: "", name: "", taskDescription: ""}});
+            console.log("This state is");
+            console.log(this.state);
+            this.setState({formFields: {id: "", name: "", desc : ""}});
         }
     }
 
@@ -53,32 +56,43 @@ export default class AddTaskModal extends Component {
         this.setState(newState);
     }
 
+    onTaskDescChange(event) {
+        let newVal = event.target.value;
+        let oldState = this.state;
+        let newState = update(oldState, {formFields: {desc: {$set: newVal}}});
+        this.setState(newState);
+    }
+
 
     render() {
         let showModal = this.props.isOpen;
         let types = this.props.types;
         return (
             <Modal isOpen={showModal} onCancel={this.props.callbacks.toogleModal} backdropClosesModal>
-                <ModalHeader text="Lots of text to show scroll behavior" showCloseButton
+                <ModalHeader text="Dodaj nowe zadanie" showCloseButton
                              onClose={this.props.callbacks.toogleModal}/>
                 <ModalBody>
 
                     <div className="input-field col s6">
-                        <input id="last_name" type="text" className="validate" value={this.state.formFields.name}
-                               onChange={this.onTaskNameChange} />
-                        <label htmlFor="last_name">name</label>
+                        <input id="taskName" type="text" className="validate" value={this.state.formFields.name}
+                               onChange={this.onTaskNameChange}/>
+                        <label htmlFor="taskName">name</label>
                     </div>
 
-                        <div className="input-field col s12">
+                    <div className="input-field col s12">
 
-                            <select className ="popup-select" onChange={this.handleSelect} value="">
-                                <option value=""></option>
-                                {types.map(type => <option key={type.id} value={type.type}>{type.type}</option>)}
-                            </select>
-                            <label> Task type</label>
-                        </div>
+                        <select className="popup-select" onChange={this.handleSelect} value="">
+                            <option value=""></option>
+                            {types.map(type => <option key={type.id} value={type.type}>{type.type}</option>)}
+                        </select>
+                        <label> Task type</label>
+                    </div>
 
-
+                    <div className="input-field col s6">
+                        <input id="taskDescription" type="text" className="validate" value={this.state.formFields.desc}
+                               onChange={this.onTaskDescChange}/>
+                        <label htmlFor="taskDescription">Desc</label>
+                    </div>
 
 
                 </ModalBody>
