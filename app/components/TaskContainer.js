@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import 'whatwg-fetch';
-import TaskBoard from './TaskBoard.js';
-import TaskTypeFilter from './TaskTypeFilter.js';
+import TaskBoard from './Tasks/board/TaskBoard.js';
+import TaskTypeFilter from './Tasks/board/TaskTypeFilter.js';
 import update from 'react-addons-update';
 import TaskActionsDiv from './Tasks/actionDiv/TaskActionsDiv';
 import SDCMenu from './menu/SDCMenu.js';
-import { DragDropContext } from 'react-dnd';
+import {DragDropContext} from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 
 
@@ -17,24 +17,23 @@ class TaskContainer extends Component {
         this.changeFilterValue = this.changeFilterValue.bind(this);
         this.addNewTask = this.addNewTask.bind(this);
         this.updateTaskStatus = this.updateTaskStatus.bind(this);
+        this.changeTask = this.changeTask.bind(this);
     }
-    addNewTask(task){
-        console.log("Add new task");
+
+    addNewTask(task) {
         let oldState = this.state;
-        let newState = update(this.state,  { tasks : {
-            $push : [task]}});
+        let newState = update(this.state, {
+            tasks: {
+                $push: [task]
+            }
+        });
         this.setState(newState);
     }
 
-    updateTaskStatus(taskId, taskStatus){
+    updateTaskStatus(taskId, taskStatus) {
         let oldState = this.state;
-        console.log("Task id is " + taskId);
-        console.log(this.state.tasks);
         let index = this.state.tasks.findIndex(task => task.id == taskId);
-        console.log("index");
-        console.log(index);
-        console.log(this.state.tasks[index]);
-        let newState = update(this.state  , {tasks : {[index] : {$merge : {status : taskStatus}}}});
+        let newState = update(this.state, {tasks: {[index]: {$merge: {status: taskStatus}}}});
         this.setState(newState);
     }
 
@@ -43,21 +42,28 @@ class TaskContainer extends Component {
         return result
     }
 
-    changeFilterValue(inputType){
+    changeFilterValue(inputType) {
 
-        this.setState({filters :  this.props.types});
+        this.setState({filters: this.props.types});
         let index = this.state.types.findIndex((taskType => taskType.type === inputType));
         var changedBool;
 
-        let changedFilterElems = update(this.state.types ,
-            {[index] :
-                {active :
-                    {$set : !this.state.types[index].active}
+        let changedFilterElems = update(this.state.types,
+            {
+                [index]: {
+                    active: {$set: !this.state.types[index].active}
                 }
             }
         );
 
-        this.setState({types :  changedFilterElems});
+        this.setState({types: changedFilterElems});
+    }
+
+    changeTask(updatedTask) {
+        let tasks = this.state.tasks;
+        let taskIndex = tasks.findIndex(task => task.id == updatedTask.id);
+        let newState = update(this.state , {tasks : {[taskIndex] : {$set : updatedTask}}});
+        this.setState(newState);
     }
 
 
@@ -73,13 +79,23 @@ class TaskContainer extends Component {
     render() {
         let tasks = this.state.tasks;
 
-        return (
-            <div className="container">
-                <SDCMenu></SDCMenu>
-                <TaskTypeFilter types={this.state.types}  taskCallbacks  = { {changeFilter:this.changeFilterValue} }/>
-                <TaskActionsDiv types={this.state.types} callbacks = {{addTask : this.addNewTask}} />
-                <TaskBoard tasks={tasks} taskCallbacks={{filter:  this.filterActiveTasks, updateTaskStatus : this.updateTaskStatus}}/>
+        let isChildContainer = this.props.children !== null;
+        let children = this.props.children && React.cloneElement(this.props.children, {
+                tasks: this.state.tasks,
+                callbacks: {changeTask: this.changeTask}})
 
+        return (
+            <div id="containerWithActions" className="container">
+                <SDCMenu></SDCMenu>
+                <div className={isChildContainer ? "no-display" : ""}>
+                    <TaskTypeFilter types={this.state.types} taskCallbacks={ {changeFilter:this.changeFilterValue} }/>
+                    <TaskActionsDiv types={this.state.types} callbacks={{addTask : this.addNewTask}}/>
+                    <TaskBoard tasks={tasks}
+                               taskCallbacks={{filter:  this.filterActiveTasks, updateTaskStatus : this.updateTaskStatus}}/>
+                </div>
+                <div className={!isChildContainer ? "no-display" : ""}>
+                    {children}
+                </div>
 
             </div>
         )

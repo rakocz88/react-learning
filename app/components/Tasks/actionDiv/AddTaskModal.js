@@ -19,12 +19,9 @@ export default class AddTaskModal extends Component {
 
     handleSelect(event) {
         let newVal = event.target.value;
-        console.log("New val");
-        console.log(newVal);
         let oldState = this.state;
         let newState = update(oldState, {formFields: {type: {$set: newVal}}});
         this.setState(newState);
-
     }
 
     validateBeforeSubmit() {
@@ -42,8 +39,6 @@ export default class AddTaskModal extends Component {
             newTask.id = Date.now();
             newTask.status = "new";
             this.props.callbacks.addTask(newTask);
-            console.log("This state is");
-            console.log(this.state);
             this.setState({formFields: {id: "", name: "", desc : ""}});
         }
     }

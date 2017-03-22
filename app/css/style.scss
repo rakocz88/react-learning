@@ -1,7 +1,14 @@
+
 $color1: #FFE6AF;
 $color2: #FFE497;
 $color3: #430002;
 $color4: #220506;
+
+
+
+.body{
+  background-image : linear-gradient($color3,$color2 )
+}
 
 .standard-border {
   border: solid;
@@ -18,7 +25,7 @@ $color4: #220506;
 }
 
 div.task-column {
-  min-height: 200px!important;
+  min-height: 200px !important;
 }
 
 .task-element {
@@ -101,4 +108,41 @@ select.popup-select {
 
 .taskItemText {
   font-size: 6px;
+}
+
+.LoginForm {
+  @extend .standard-border;
+  text-align: center;
+
+}
+
+.container-small {
+  width: 40% !important;
+}
+
+.no-display {
+  display: none;
+}
+
+.button-group {
+  text-align: center;
+}
+
+.baner {
+  text-align: center;
+  background-color: inherit;
+  font-family: GillSans, Calibri, Trebuchet, sans-serif;
+  size: 20px;
+  margin-bottom: 20px;
+  margin-top :20px;
+
+}
+
+img.baner {
+  text-align: left;
+}
+
+img.logo-small {
+  width: 5%;
+  height: 5%;
 }
