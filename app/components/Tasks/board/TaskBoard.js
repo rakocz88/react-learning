@@ -11,17 +11,16 @@ export default class TaskBoard extends Component {
 
 
     render() {
-
+        console.log("Rerender task board");
         return (
             <div className="task-board">
                 <div className="row">
 
-                    <TaskColumn tasks={this.props.tasks} columnType='new' columnDesc = 'Nowe'
-                                taskCallbacks={this.props.taskCallbacks}> </TaskColumn>
+                    <TaskColumn tasks={this.props.tasks} columnType='new' columnDesc = 'Nowe' callbacks = {this.props.callbacks}> </TaskColumn>
                     <TaskColumn tasks={this.props.tasks} columnType='inProgress' columnDesc = 'Robie'
-                                taskCallbacks={this.props.taskCallbacks}> </TaskColumn>
+                                callbacks={this.props.callbacks}> </TaskColumn>
                     <TaskColumn tasks={this.props.tasks} columnType='done' columnDesc = 'Zrobione'
-                                taskCallbacks={this.props.taskCallbacks}> </TaskColumn>
+                                callbacks={this.props.callbacks}> </TaskColumn>
                 </div>
             </div>
         )

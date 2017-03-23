@@ -10,18 +10,14 @@ export default class AddTaskModal extends Component {
     constructor() {
         super();
         this.state = {formFields: {id: "", name: "", desc: "", status: "new", type: ""}};
-        this.handleSelect = this.handleSelect.bind(this);
-        this.onTaskNameChange = this.onTaskNameChange.bind(this);
-        this.onTaskDescChange = this.onTaskDescChange.bind(this);
+        this.handleChange = this.handleChange.bind(this);
         this.submitForm = this.submitForm.bind(this);
         this.validateBeforeSubmit = this.validateBeforeSubmit.bind(this);
     }
 
-    handleSelect(event) {
-        let newVal = event.target.value;
-        let oldState = this.state;
-        let newState = update(oldState, {formFields: {type: {$set: newVal}}});
-        this.setState(newState);
+
+    handleChange(event, field){
+        this.state[field] = event.target.value;
     }
 
     validateBeforeSubmit() {
@@ -69,14 +65,14 @@ export default class AddTaskModal extends Component {
                 <ModalBody>
 
                     <div className="input-field col s6">
-                        <input id="taskName" type="text" className="validate" value={this.state.formFields.name}
-                               onChange={this.onTaskNameChange}/>
+                        <input id="taskName" type="text" className="validate" value={this.state.name}
+                               onChange={(event)=>this.handleChange(event, 'name')}/>
                         <label htmlFor="taskName">name</label>
                     </div>
 
                     <div className="input-field col s12">
 
-                        <select className="popup-select" onChange={this.handleSelect} value="">
+                        <select className="popup-select" onChange={(event)=>this.handleChange(event, 'type')} value={this.state.type}>
                             <option value=""></option>
                             {types.map(type => <option key={type.id} value={type.type}>{type.type}</option>)}
                         </select>
@@ -84,8 +80,8 @@ export default class AddTaskModal extends Component {
                     </div>
 
                     <div className="input-field col s6">
-                        <input id="taskDescription" type="text" className="validate" value={this.state.formFields.desc}
-                               onChange={this.onTaskDescChange}/>
+                        <input id="taskDescription" type="text" className="validate" value={this.state.desc}
+                               onChange={(event)=>this.handleChange(event, 'desc')} />
                         <label htmlFor="taskDescription">Desc</label>
                     </div>
 

@@ -37,8 +37,9 @@ class TaskColumn extends Component {
         console.log(this.props);
         let filteredTasks = this.props.tasks
             .filter(task => task.status === columnType)
-            // .filter(filteredTask => this.props.callbacks.filter(filteredTask.type));
-        console.log("Lets go");
+
+        // .filter(filteredTask => this.props.callbacks.filter(filteredTask.type));
+
         let columnClass = "col s4 task-column ";
         if (isOver && canDrop) {
             columnClass = columnClass.concat("can-drop");

@@ -31,7 +31,7 @@ var config = {
                 test: /\.less$/,
                 loader: 'style-loader!css-loader!less-loader'
             },
-            {test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000'},
+            {test: /\.(png|woff|woff2|eot|ttf|svg|jpg)$/, loader: 'url-loader?limit=100000'},
             {
                 test: '/materialize-css/bin/',
                 loader: 'imports?jQuery=jquery,$=jquery,hammerjs'
