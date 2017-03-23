@@ -4,8 +4,6 @@ import {DragSource} from 'react-dnd';
 import constants from './../../constants.js';
 import {Link} from 'react-router';
 
-
-
 let TaskItemSpec = {
     beginDrag(props, monitor, component){
         return {
@@ -19,14 +17,6 @@ let TaskItemSpec = {
             props.updateTaskStatus(id, status);
         }
     }
-    /*    ,
-     canDrag(){
-     console.log("Can drag");
-     }*/
-    /* ,
-     isDragging(){
-     console.log("Is dragging");
-     }*/
 }
 
 let collect = (connect, monitor)=> {
@@ -38,18 +28,16 @@ let collect = (connect, monitor)=> {
 
 class TaskItem extends Component {
 
-    constructor(){
+    constructor() {
         super();
         this.goToDetails = this.goToDetails.bind(this);
     }
 
-    goToDetails (){
+    goToDetails() {
         this.props.history.pushState(null, "/board");
-
     }
 
     render() {
-
         let {value, desc, id} = this.props;
         const {name, isDragging, connectDragSource} = this.props;
         let itemCssClass = "task-element task-element-action";
@@ -73,12 +61,11 @@ class TaskItem extends Component {
                                 </div>
                             </div>
                             <div className="cols s2">
-                                    <Link to={'/task/details/'+id}><i className="Small material-icons">mode_edit</i></Link>
+                                <Link to={'/task/details/'+id}><i className="Small material-icons">mode_edit</i></Link>
                             </div>
                         </div>
 
                     </div>
-
                 </ReactCSSTransitionGroup>
             </div>
         )

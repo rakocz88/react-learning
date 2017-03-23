@@ -5,6 +5,6 @@ export const  debounce = (fn, wait)=>{
         let args = arguments;
         clearTimout(timer);
         timer = setTImeout(function(){
-            fn.apply(context, args)} , delay)
+            fn.apply(context, args)} , wait)
         }
 }

@@ -4,23 +4,22 @@ import {DropTarget} from 'react-dnd';
 import constants from './../../constants.js';
 
 let spec = {
-   drop(props){
-        return {status : props.columnType}
+    drop(props){
+        return {status: props.columnType}
     }
 
 }
 
 let collect = (connector, monitor)=> {
     return {
-        connectDropTarget : connector.dropTarget(),
-        isOver : monitor.isOver(),
-        canDrop : monitor.canDrop()
-}
+        connectDropTarget: connector.dropTarget(),
+        isOver: monitor.isOver(),
+        canDrop: monitor.canDrop()
+    }
 }
 
 
 class TaskColumn extends Component {
-
 
     constructor(props) {
         super(props);
@@ -34,20 +33,23 @@ class TaskColumn extends Component {
     render() {
 
         let {connectDropTarget, isOver, canDrop, columnType, columnDesc} = this.props;
+        console.log("Task column props");
+        console.log(this.props);
         let filteredTasks = this.props.tasks
             .filter(task => task.status === columnType)
-            .filter(filteredTask => this.props.taskCallbacks.filter(filteredTask.type));
+            // .filter(filteredTask => this.props.callbacks.filter(filteredTask.type));
+        console.log("Lets go");
         let columnClass = "col s4 task-column ";
-        if (isOver && canDrop){
-            columnClass= columnClass.concat("can-drop");
+        if (isOver && canDrop) {
+            columnClass = columnClass.concat("can-drop");
         }
-        else if (isOver){
-            columnClass= columnClass.concat("cant-drop");
+        else if (isOver) {
+            columnClass = columnClass.concat("cant-drop");
         }
         return connectDropTarget(
             <div className={columnClass}>
                 <div className="column-header"> {columnDesc} </div>
-                {filteredTasks.map(task => <TaskItem key={task.id} value={task.name} id={task.id} desc = {task.desc} updateTaskStatus = {this.props.taskCallbacks.updateTaskStatus}/>)}
+                {filteredTasks.map(task => <TaskItem key={task.id} value={task.name} id={task.id} desc={task.desc}/>)}
 
             </div>
         )

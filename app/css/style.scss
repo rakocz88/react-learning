@@ -3,29 +3,69 @@ $color1: #FFE6AF;
 $color2: #FFE497;
 $color3: #430002;
 $color4: #220506;
+$color5: black;
+$color6: 00b0ff;
+$silver : #a5ada2;
+$green : #87e07f;
+$light-silver : #e4ede3;
+$cyan : #90e5cc;
+$black : #000000;
 
+html {
+  height: 100vh;
 
+}
+
+input {
+
+  font-size: 20px;
+  font-weight: bold;
+
+}
+
+label {
+
+}
+body {
+  min-height: 100vh;
+}
+
+select {
+  background-color: inherit;
+}
 
 .body{
-  background-image : linear-gradient($color3,$color2 )
+
+}
+
+.container-image {
+  height: 100vh;
+  background-image: url("./../../public/img/photo6.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .standard-border {
   border: solid;
-  border-color: $color2;
+  border-color: $color5;
   border-radius: 6px;
+
 }
 
 .task-column {
-  @extend .standard-border;
-  background: $color3;
+
+
+  background-image: linear-gradient($color3, $silver );
   margin-left: 0;
   margin-right: 0;
+
 
 }
 
 div.task-column {
-  min-height: 200px !important;
+  min-height: 100px !important;
+  border-radius: 7px;
 }
 
 .task-element {
@@ -53,7 +93,7 @@ select.popup-select {
 }
 
 .task-board {
-  @extend .standard-border;
+
   text-align: center;
   left: 50%;
 }
@@ -64,6 +104,7 @@ select.popup-select {
 
 .column-header {
   color: #90CAF9;
+
 }
 
 .task-element-appear {
@@ -86,7 +127,8 @@ select.popup-select {
 
 .task-element-action:hover {
   transition: 500ms;
-  transform: scale(1.4, 1.4);
+  transform: scale(1, 1);
+  border-color : $cyan;
   z-index: 999;
 }
 
@@ -95,12 +137,11 @@ select.popup-select {
 }
 
 .can-drop {
-  background-color: #00E676;
+
+  background-image : linear-gradient($color3,$cyan )
+
 }
 
-.cant-drop {
-  background-color: red;
-}
 
 .taskItemHeader {
   font-size: 10px;
@@ -111,8 +152,12 @@ select.popup-select {
 }
 
 .LoginForm {
-  @extend .standard-border;
-  text-align: center;
+  background-color: inherit;
+  opacity: 1;
+  .login-buttons {
+    text-align: center;
+  }
+
 
 }
 
@@ -134,7 +179,7 @@ select.popup-select {
   font-family: GillSans, Calibri, Trebuchet, sans-serif;
   size: 20px;
   margin-bottom: 20px;
-  margin-top :20px;
+
 
 }
 

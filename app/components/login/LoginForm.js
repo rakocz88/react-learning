@@ -33,8 +33,8 @@ class LoginForm extends Component {
                     </div>
                 </div>
 
-                <div className="row">
-                    <button type="submit" className="waves-effect waves-light btn"> Login</button>
+                <div className="row login-buttons">
+                    <button type="submit" className="waves-effect waves-light btn"> <i className="fa fa-sign-in" aria-hidden="true"></i></button>
                 </div>
             </form>
         )

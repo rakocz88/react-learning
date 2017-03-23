@@ -1,0 +1,27 @@
+import {Dispatcher} from 'flux';
+import'babel-polyfill'
+import actionNames from '../actions/ActionNames.js';
+
+
+class AppDispatcher extends Dispatcher {
+
+    dispatchAsync(promise, types, payload) {
+        console.log("promise");
+        console.log(promise);
+        const {request, success, failure} = types;
+        this.dispatch({type: request, payload: Object.assign({}, payload)});
+        promise.then(
+            response => this.dispatch({
+                type: success,
+                payload: Object.assign({}, payload, { response })
+            }),
+            error => this.dispatch({
+                type: failure,
+                payload: Object.assign({}, payload, { error })
+            })
+        );
+
+    }
+}
+
+export default new AppDispatcher()

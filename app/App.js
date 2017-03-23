@@ -1,6 +1,6 @@
 import React from 'react';
 import {render} from 'react-dom';
-import TaskContainer from './components/TaskContainer.js';
+import TaskContainer from './components/Tasks/TaskContainer.js';
 import TaskDetails from './components/Tasks/details/TaskDetails.js';
 import NotFound from './components/static/NotFound.js';
 import Login from './components/login/Login.js';
@@ -13,6 +13,7 @@ window.jQuery = window.$ = require('jquery');
 //window.jQuery = require("../node_modules/materialize-css/bin/jquery-2.1.1.min");
 
 require("../node_modules/materialize-css/bin/materialize.js");
+
 require("./css/style.less");
 require("./css/style.scss");
 
@@ -20,7 +21,7 @@ require("./css/style.scss");
 class App extends React.Component {
     render() {
         return (
-            <div className = "body">
+            <div className = "body container-image">
                 <Baner/>
                 <div>
                     {this.props.children}
