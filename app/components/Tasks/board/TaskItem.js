@@ -3,6 +3,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {DragSource} from 'react-dnd';
 import constants from './../../constants.js';
 import {Link} from 'react-router';
+import TaskActionCreator from './../../../actions/TaskActionCreator'
 
 let TaskItemSpec = {
     beginDrag(props, monitor, component){
@@ -14,7 +15,7 @@ let TaskItemSpec = {
         if (monitor.getDropResult() !== null) {
             let {status} =  monitor.getDropResult();
             let {id} = props;
-            props.updateTaskStatus(id, status);
+           TaskActionCreator.updateTaskStatus(id, status);
         }
     }
 }

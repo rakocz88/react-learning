@@ -9,11 +9,11 @@ let TaskActionCreator = {
     updateTask: (task) => {
         AppDispatcher.dispatch({type : ActionNames.updateTask, payload : task});
     },
-    changeTaskStatus: (task) => {
-        AppDispatcher.dispatch({type : ActionNames.updateTaskStatus, payload : task});
+    updateTaskStatus: (id, status) => {
+        AppDispatcher.dispatch({type : ActionNames.changeTaskStatusSuccess,  payload : {id: id, status : status}});
     },
     getTasks: () => {
-        console.log("GEt tasks");
+
         AppDispatcher.dispatchAsync(TaskApi.getTasks, {
             request: ActionNames.getTasks,
             success: ActionNames.getTaskSuccess,

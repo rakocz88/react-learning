@@ -20,7 +20,6 @@ class TaskContainer extends Component {
         this.filterActiveTasks = this.filterActiveTasks.bind(this);
         this.changeFilterValue = this.changeFilterValue.bind(this);
         this.addNewTask = this.addNewTask.bind(this);
-        this.updateTaskStatus = this.updateTaskStatus.bind(this);
         this.changeTask = this.changeTask.bind(this);
     }
 
@@ -31,13 +30,6 @@ class TaskContainer extends Component {
                 $push: [task]
             }
         });
-        this.setState(newState);
-    }
-
-    updateTaskStatus(taskId, taskStatus) {
-        let oldState = this.state;
-        let index = this.state.tasks.findIndex(task => task.id == taskId);
-        let newState = update(this.state, {tasks: {[index]: {$merge: {status: taskStatus}}}});
         this.setState(newState);
     }
 
@@ -59,7 +51,6 @@ class TaskContainer extends Component {
                 }
             }
         );
-
         this.setState({types: changedFilterElems});
     }
 
@@ -70,21 +61,16 @@ class TaskContainer extends Component {
         this.setState(newState);
     }
 
-
     componentDidMount() {
         TaskActionCreator.getTasks();
     }
 
     render() {
-
-
        let tasks = TaskStore.getState();
-
         let isChildContainer = this.props.children !== null;
         let children = this.props.children && React.cloneElement(this.props.children, {
                 tasks: this.state.tasks
             })
-
         return (
             <div id="containerWithActions" className="container">
                 <SDCMenu></SDCMenu>
@@ -94,15 +80,10 @@ class TaskContainer extends Component {
                 <div className={!isChildContainer ? "no-display" : ""}>
                     {children}
                 </div>
-
             </div>
         )
-
-
     }
-
 }
-
 TaskContainer.getStores = () => ([TaskStore, TypeStore]);
 TaskContainer.calculateState =
     (prevState)=>

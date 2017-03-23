@@ -11,7 +11,7 @@ export default class TaskBoard extends Component {
 
 
     render() {
-
+        console.log("Rerender task board");
         return (
             <div className="task-board">
                 <div className="row">
