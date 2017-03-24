@@ -12,6 +12,7 @@ import TypeStore from './../../stores/TypeStore';
 import TaskActionCreator from './../../actions/TaskActionCreator';
 import {Container} from 'flux/utils';
 import TaskDndContainer from './board/TaskDndContainer'
+import TaskTypeFilterStore from './../../stores/TaskTypeFilterStore'
 
 
 class TaskContainer extends Component {
@@ -66,7 +67,7 @@ class TaskContainer extends Component {
     }
 
     render() {
-       let tasks = TaskStore.getState();
+        let tasks = TaskStore.getState();
         let isChildContainer = this.props.children !== null;
         let children = this.props.children && React.cloneElement(this.props.children, {
                 tasks: this.state.tasks
@@ -75,7 +76,7 @@ class TaskContainer extends Component {
             <div id="containerWithActions" className="container">
                 <SDCMenu></SDCMenu>
                 <div className={isChildContainer ? "no-display" : ""}>
-                    <TaskDndContainer types = {this.state.types} tasks = {this.state.tasks} />
+                    <TaskDndContainer types={this.state.types} tasks={this.state.tasks} filters={this.state.filters}/>
                 </div>
                 <div className={!isChildContainer ? "no-display" : ""}>
                     {children}
@@ -84,10 +85,10 @@ class TaskContainer extends Component {
         )
     }
 }
-TaskContainer.getStores = () => ([TaskStore, TypeStore]);
+TaskContainer.getStores = () => ([TaskStore, TypeStore, TaskTypeFilterStore]);
 TaskContainer.calculateState =
     (prevState)=>
-        ({tasks: TaskStore.getState(), types: TypeStore.getState()});
+        ({tasks: TaskStore.getState(), types: TypeStore.getState(), filters: TaskTypeFilterStore.getState()});
 
 export default Container.create(TaskContainer);
 

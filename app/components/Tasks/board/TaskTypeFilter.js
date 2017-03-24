@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import FilterElement from './FilterElement.js';
+import TaskTypeFilterStore from './../../../stores/TaskTypeFilterStore';
+import FilterTasksTypesActionCreator from './../../../actions/FilterTasksTypesActionCreator'
 import 'babel-polyfill';
 
 export default class TaskTypeFilter extends Component{
@@ -8,17 +10,20 @@ export default class TaskTypeFilter extends Component{
     super(props);
   }
 
+    componentDidMount(){
+        FilterTasksTypesActionCreator.getAllFilters();
+    }
+
 
 
   render (){
-    let allFilters = this.props.types;
+    let allFilters = TaskTypeFilterStore.getState();
     return (
         <div className = "">
           <div className="filter-buttons-container">
           { allFilters.map(filter => <FilterElement key={filter.id}
                                                     name={filter.type}
-                                                    active={filter.active}
-                                                    taskCallbacks={this.props.taskCallbacks}/>
+                                                    active={filter.active}/>
           )
           }
              </div>

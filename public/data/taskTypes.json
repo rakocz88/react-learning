@@ -1,11 +1,11 @@
 {"types" : [
-  {"id":1,  "type" : "jedzenieIPicie", "active" : true},
-  {"id":2, "type" : "muzyka", "active" : true},
-  {"id":3, "type" : "kosciol", "active" : true},
-  {"id":4, "type" : "urzad", "active" : true},
-  {"id":5, "type" : "osobiste", "active" : true},
-  {"id":6, "type" : "inne", "active" : true},
-  {"id":7, "type" : "sala", "active" : true},
-  {"id":8, "type" : "dekoracja", "active" : true},
-  {"id":9, "type" : "zakupy", "active" : true}
+  {"id":1,  "type" : "jedzenieIPicie"},
+  {"id":2, "type" : "muzyka"},
+  {"id":3, "type" : "kosciol"},
+  {"id":4, "type" : "urzad"},
+  {"id":5, "type" : "osobiste"},
+  {"id":6, "type" : "inne"},
+  {"id":7, "type" : "sala"},
+  {"id":8, "type" : "dekoracja"},
+  {"id":9, "type" : "zakupy"}
   ]}

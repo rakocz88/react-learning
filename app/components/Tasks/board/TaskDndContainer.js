@@ -13,13 +13,7 @@ import TaskActionCreator from './../../../actions/TaskActionCreator';
 class TaskDndContainer extends Component {
     constructor(props) {
         super(props);
-        this.filterActiveTasks = this.filterActiveTasks.bind(this);
         this.changeFilterValue = this.changeFilterValue.bind(this);
-    }
-
-    filterActiveTasks(elem) {
-        let result = this.props.types.map(type1 => type1).filter(type => type.type === elem).filter(filteredType => filteredType.active).length > 0;
-        return result
     }
 
     changeFilterValue(inputType) {
@@ -45,9 +39,9 @@ class TaskDndContainer extends Component {
 
         return (
             <div>
-                <TaskTypeFilter types={this.props.types} taskCallbacks={ {changeFilter:this.changeFilterValue} }/>
+                <TaskTypeFilter types={this.props.types} />
                 <TaskActionsDiv types={this.props.types} callbacks={{addTask : this.addNewTask}}/>
-                <TaskBoard tasks={tasks} callbacks = {{filter : this.filterActiveTasks}}/>
+                <TaskBoard tasks={tasks}/>
             </div>
 
         )

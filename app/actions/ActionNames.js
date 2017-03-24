@@ -14,7 +14,13 @@ let actionNames = {
     getTasksFailure : "GetTasksFailure",
     getTypes : "GetTypes",
     getTypesSuccess : "GetTypesSuccess",
-    getTypesFailure : "GetTypesFailure"
+    getTypesFailure : "GetTypesFailure",
+    getTaskTypesFilters : "getTaskTypesFilters",
+    getTaskTypesFiltersSuccess : "getTaskTypesFiltersSuccess",
+    getTaskTypesFiltersFailure : "getTaskTypesFiltersFailure",
+    getTaskTypesFilterChange : "getTaskTypesFilters",
+    getTaskTypesFilterChangeSuccess : "getTaskTypesFiltersSuccess",
+    getTaskTypesFilterChangeFailure : "getTaskTypesFiltersFailure",
 }
 
 export default actionNames;
