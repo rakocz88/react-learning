@@ -14,7 +14,7 @@ class TaskTypeFilterStore extends ReduceStore {
         switch (action.type){
             case actionNames.getTaskTypesFiltersSuccess :
                 let elems = action.payload.response.types;
-                elems.map(element => element.active= false);
+                elems.map(element => element.active= true);
 
                 return elems;
             case actionNames.getTaskTypesFilterChange:

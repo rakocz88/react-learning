@@ -4,6 +4,8 @@ import ActionNames from './ActionNames'
 
 let TaskActionCreator = {
     addTask: (task) => {
+        console.log("Action called with task");
+        console.log(task);
         AppDispatcher.dispatch({type : ActionNames.addTask, payload : task});
     },
     updateTask: (task) => {
@@ -19,6 +21,9 @@ let TaskActionCreator = {
             success: ActionNames.getTaskSuccess,
             failure: ActionNames.getTasksFailure
         })
+    },
+    goToDetails : (task) => {
+        AppDispatcher.dispatch({type : ActionNames.goToTaskDetails, payload : task})
     }
 
 

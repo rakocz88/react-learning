@@ -13,7 +13,7 @@ export default class TaskActionsDiv extends Component {
     render(){
         return(
             <div className = "buttons-acions-div">
-               <AddTaskButton  types={this.props.types} callbacks = {{addTask : this.props.callbacks.addTask}} />
+               <AddTaskButton  types={this.props.types} />
             </div>
         );
     }

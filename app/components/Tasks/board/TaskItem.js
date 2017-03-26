@@ -4,6 +4,7 @@ import {DragSource} from 'react-dnd';
 import constants from './../../constants.js';
 import {Link} from 'react-router';
 import TaskActionCreator from './../../../actions/TaskActionCreator'
+import {hashHistory} from 'react-router';
 
 let TaskItemSpec = {
     beginDrag(props, monitor, component){
@@ -34,8 +35,9 @@ class TaskItem extends Component {
         this.goToDetails = this.goToDetails.bind(this);
     }
 
-    goToDetails() {
-        this.props.history.pushState(null, "/board");
+    goToDetails(event, id) {
+        TaskActionCreator.goToDetails(id);
+        hashHistory.push("/task/details/"+ id);
     }
 
     render() {
@@ -51,7 +53,6 @@ class TaskItem extends Component {
                                          transitionAppear={true} transitionEnterTimeout={0} transitionAppearTimeout={0}
                                          transitionLeaveTimeout={0}>
                     <div className="row">
-
                         <div className={itemCssClass}>
                             <div className="col s10">
                                 <div className="taskItemHeader">
@@ -62,7 +63,7 @@ class TaskItem extends Component {
                                 </div>
                             </div>
                             <div className="cols s2">
-                                <Link to={'/task/details/'+id}><i className="Small material-icons">mode_edit</i></Link>
+                                <a className="" onClick = {(e)=>this.goToDetails(e, id)}><i className="fa fa-2x fa-pencil-square-o" aria-hidden="true"></i></a>
                             </div>
                         </div>
 

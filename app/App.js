@@ -12,7 +12,7 @@ require("../node_modules/materialize-css/bin/materialize.css");
 window.jQuery = window.$ = require('jquery');
 //window.jQuery = require("../node_modules/materialize-css/bin/jquery-2.1.1.min");
 
-require("../node_modules/materialize-css/bin/materialize.js");
+let Materialize = require("../node_modules/materialize-css/bin/materialize.js");
 
 require("./css/style.less");
 require("./css/style.scss");

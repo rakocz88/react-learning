@@ -10,21 +10,25 @@ $green : #87e07f;
 $light-silver : #e4ede3;
 $cyan : #90e5cc;
 $black : #000000;
+$gray : 868686;
+
+
 
 html {
   height: 100vh;
-
 }
 
 input {
-
   font-size: 20px;
   font-weight: bold;
+}
+
+.standard-div {
+  background-image: linear-gradient($color1, $silver );
 
 }
 
 label {
-
 }
 body {
   min-height: 100vh;
@@ -34,13 +38,10 @@ select {
   background-color: inherit;
 }
 
-.body{
-
-}
 
 .container-image {
   height: 100vh;
-  background-image: url("./../../public/img/photo6.jpg");
+  background-image: url("./../../public/img/my4.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -54,13 +55,9 @@ select {
 }
 
 .task-column {
-
-
-  background-image: linear-gradient($color3, $silver );
+  @extend .standard-div;
   margin-left: 0;
   margin-right: 0;
-
-
 }
 
 div.task-column {
@@ -70,15 +67,21 @@ div.task-column {
 
 .task-element {
   @extend .standard-border;
-  background: $color4;
+  background: $green;
   margin: 10px;
 }
 
 .filter-buttons-container {
   @extend .standard-border;
-  background: $color4;
-  background: $color3;
+  @extend .standard-div;
+  button {
+    padding: 3px;
+  }
+}
 
+.filter-button-active {
+  @extend .standard-border;
+  background-color: $green;
 }
 
 .buttons-acions-div {
@@ -133,12 +136,12 @@ select.popup-select {
 }
 
 .dragged-item {
-  background-color: gainsboro;
+  background-color: $cyan;
 }
 
 .can-drop {
 
-  background-image : linear-gradient($color3,$cyan )
+  background-image: linear-gradient($color1, $cyan );
 
 }
 
@@ -190,4 +193,8 @@ img.baner {
 img.logo-small {
   width: 5%;
   height: 5%;
+}
+
+.green-modal {
+  background-color: $green;
 }

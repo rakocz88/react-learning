@@ -1,69 +1,24 @@
 import React, {Component} from 'react';
 import 'whatwg-fetch';
-import TaskBoard from './board/TaskBoard.js';
-import TaskTypeFilter from './board/TaskTypeFilter.js';
-import update from 'react-addons-update';
-import TaskActionsDiv from './actionDiv/TaskActionsDiv';
 import SDCMenu from './../menu/SDCMenu.js';
-import {DragDropContext} from 'react-dnd';
-import HTML5Backend from 'react-dnd-html5-backend';
 import TaskStore from './../../stores/TaskStore';
 import TypeStore from './../../stores/TypeStore';
 import TaskActionCreator from './../../actions/TaskActionCreator';
 import {Container} from 'flux/utils';
 import TaskDndContainer from './board/TaskDndContainer'
+import TypeActionCreator from './../../actions/TypeActionCreator'
 import TaskTypeFilterStore from './../../stores/TaskTypeFilterStore'
+import TaskDetailsStore from './../../stores/TaskDetailsStore'
 
 
 class TaskContainer extends Component {
     constructor(props) {
         super(props);
-        this.filterActiveTasks = this.filterActiveTasks.bind(this);
-        this.changeFilterValue = this.changeFilterValue.bind(this);
-        this.addNewTask = this.addNewTask.bind(this);
-        this.changeTask = this.changeTask.bind(this);
-    }
-
-    addNewTask(task) {
-        let oldState = this.state;
-        let newState = update(this.state, {
-            tasks: {
-                $push: [task]
-            }
-        });
-        this.setState(newState);
-    }
-
-    filterActiveTasks(elem) {
-        let result = this.state.types.map(type1 => type1).filter(type => type.type === elem).filter(filteredType => filteredType.active).length > 0;
-        return result
-    }
-
-    changeFilterValue(inputType) {
-
-        this.setState({filters: this.props.types});
-        let index = this.state.types.findIndex((taskType => taskType.type === inputType));
-        var changedBool;
-
-        let changedFilterElems = update(this.state.types,
-            {
-                [index]: {
-                    active: {$set: !this.state.types[index].active}
-                }
-            }
-        );
-        this.setState({types: changedFilterElems});
-    }
-
-    changeTask(updatedTask) {
-        let tasks = this.state.tasks;
-        let taskIndex = tasks.findIndex(task => task.id == updatedTask.id);
-        let newState = update(this.state, {tasks: {[taskIndex]: {$set: updatedTask}}});
-        this.setState(newState);
     }
 
     componentDidMount() {
         TaskActionCreator.getTasks();
+        TypeActionCreator.getTypes();
     }
 
     render() {
@@ -85,10 +40,10 @@ class TaskContainer extends Component {
         )
     }
 }
-TaskContainer.getStores = () => ([TaskStore, TypeStore, TaskTypeFilterStore]);
+TaskContainer.getStores = () => ([TaskStore, TypeStore, TaskTypeFilterStore, TaskDetailsStore]);
 TaskContainer.calculateState =
     (prevState)=>
-        ({tasks: TaskStore.getState(), types: TypeStore.getState(), filters: TaskTypeFilterStore.getState()});
+        ({tasks: TaskStore.getState(), types: TypeStore.getState(), filters: TaskTypeFilterStore.getState(), taskDetails : TaskDetailsStore.getState()});
 
 export default Container.create(TaskContainer);
 

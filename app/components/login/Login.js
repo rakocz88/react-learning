@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import update from 'react-addons-update';
 import LoginForm from './LoginForm.js';
+import {hashHistory} from 'react-router';
+
 
 class Login extends Component {
 
@@ -19,7 +21,6 @@ class Login extends Component {
         this.setState(newState);
     }
 
-
     changePassword(event) {
         let newPassword = event.target.value;
         let oldState = this.state;
@@ -29,10 +30,10 @@ class Login extends Component {
 
     login() {
         if (this.state.login !== this.state.password) {
-            alert("Nieudane logowanie");
+            Materialize.toast('Niepoprawne hasło lub login', 6000, 'red') // 4000 is the duration of the toast
         }
         else {
-            this.props.history.pushState(null, "/board");
+            hashHistory.push("/board");
         }
     }
 

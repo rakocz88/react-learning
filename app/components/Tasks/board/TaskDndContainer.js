@@ -13,40 +13,17 @@ import TaskActionCreator from './../../../actions/TaskActionCreator';
 class TaskDndContainer extends Component {
     constructor(props) {
         super(props);
-        this.changeFilterValue = this.changeFilterValue.bind(this);
     }
-
-    changeFilterValue(inputType) {
-
-        let index = this.props.types.findIndex((taskType => taskType.type === inputType));
-        var changedBool;
-
-        let changedFilterElems = update(this.props.types,
-            {
-                [index]: {
-                    active: {$set: !this.props.types[index].active}
-                }
-            }
-        );
-    }
-
-    componentDidMount() {
-        TaskActionCreator.getTasks();
-    }
-
     render() {
         let tasks = this.props.tasks;
-
         return (
             <div>
                 <TaskTypeFilter types={this.props.types} />
-                <TaskActionsDiv types={this.props.types} callbacks={{addTask : this.addNewTask}}/>
+                <TaskActionsDiv types={this.props.types}/>
                 <TaskBoard tasks={tasks}/>
             </div>
-
         )
     }
 }
 
 export default DragDropContext(HTML5Backend)(TaskDndContainer);
-;

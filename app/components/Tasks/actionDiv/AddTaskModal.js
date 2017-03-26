@@ -3,7 +3,8 @@
  */
 import React, {Component} from 'react';
 import {Button, Modal, ModalBody, ModalHeader, ModalFooter} from 'elemental';
-import update from 'react-addons-update';
+import TaskActionCreator from './../../../actions/TaskActionCreator'
+import TaskItemValidation from './../validation/TaskItemValidation'
 
 export default class AddTaskModal extends Component {
 
@@ -16,8 +17,8 @@ export default class AddTaskModal extends Component {
     }
 
 
-    handleChange(event, field){
-        this.state[field] = event.target.value;
+    handleChange(event, field) {
+        this.state.formFields[field] = event.target.value;
     }
 
     validateBeforeSubmit() {
@@ -29,29 +30,18 @@ export default class AddTaskModal extends Component {
     }
 
     submitForm() {
-        if (this.validateBeforeSubmit()) {
+        if (TaskItemValidation.validateTaskDetails( this.state.formFields)) {
             this.props.callbacks.toogleModal();
             let newTask = this.state.formFields;
             newTask.id = Date.now();
             newTask.status = "new";
-            this.props.callbacks.addTask(newTask);
-            this.setState({formFields: {id: "", name: "", desc : ""}});
+            TaskActionCreator.addTask(newTask)
+            this.setState({formFields: {id: "", name: "", desc: ""}});
+            Materialize.toast('Poprawnie dodano zadanie', 6000, 'blue')
         }
-    }
-
-    onTaskNameChange(event) {
-
-        let newVal = event.target.value;
-        let oldState = this.state;
-        let newState = update(oldState, {formFields: {name: {$set: newVal}}});
-        this.setState(newState);
-    }
-
-    onTaskDescChange(event) {
-        let newVal = event.target.value;
-        let oldState = this.state;
-        let newState = update(oldState, {formFields: {desc: {$set: newVal}}});
-        this.setState(newState);
+        else {
+            Materialize.toast('Formularz zawiera bledy', 6000, 'red')
+        }
     }
 
 
@@ -72,7 +62,8 @@ export default class AddTaskModal extends Component {
 
                     <div className="input-field col s12">
 
-                        <select className="popup-select" onChange={(event)=>this.handleChange(event, 'type')} value={this.state.type}>
+                        <select className="popup-select" onChange={(event)=>this.handleChange(event, 'type')}
+                                value={this.state.type}>
                             <option value=""></option>
                             {types.map(type => <option key={type.id} value={type.type}>{type.type}</option>)}
                         </select>
@@ -81,10 +72,9 @@ export default class AddTaskModal extends Component {
 
                     <div className="input-field col s6">
                         <input id="taskDescription" type="text" className="validate" value={this.state.desc}
-                               onChange={(event)=>this.handleChange(event, 'desc')} />
+                               onChange={(event)=>this.handleChange(event, 'desc')}/>
                         <label htmlFor="taskDescription">Desc</label>
                     </div>
-
 
                 </ModalBody>
                 <ModalFooter>

@@ -10,8 +10,8 @@ class TypeStore extends ReduceStore {
 
     reduce (state, action){
         switch (action.type){
-            case actionNames.getTypes:
-                return action.payload.response;
+            case actionNames.getTypesSuccess:
+                return action.payload.response.types;
             default : return state ;
         }
 

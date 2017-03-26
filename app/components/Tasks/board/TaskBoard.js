@@ -8,7 +8,6 @@ export default class TaskBoard extends Component {
         super(props);
     }
 
-
     render() {
         return (
             <div className="task-board">
@@ -19,7 +18,6 @@ export default class TaskBoard extends Component {
                 </div>
             </div>
         )
-            ;
     }
 }
 

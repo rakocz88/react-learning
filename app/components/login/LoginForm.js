@@ -9,7 +9,7 @@ class LoginForm extends Component {
 
     render() {
         return (
-            <form className="LoginForm container container-small row" onSubmit={this.props.callbacks.login}>
+            <div className="LoginForm container container-small row" >
                 <div className="row">
                     <div className="input-field col s3">
                     </div>
@@ -34,9 +34,9 @@ class LoginForm extends Component {
                 </div>
 
                 <div className="row login-buttons">
-                    <button type="submit" className="waves-effect waves-light btn"> <i className="fa fa-sign-in" aria-hidden="true"></i></button>
+                    <button type="button" className="waves-effect waves-light btn" onClick={this.props.callbacks.login}> <i className="fa fa-sign-in" aria-hidden="true"></i></button>
                 </div>
-            </form>
+            </div>
         )
     }
 }

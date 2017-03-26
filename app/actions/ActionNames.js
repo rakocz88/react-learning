@@ -21,6 +21,7 @@ let actionNames = {
     getTaskTypesFilterChange : "getTaskTypesFilters",
     getTaskTypesFilterChangeSuccess : "getTaskTypesFiltersSuccess",
     getTaskTypesFilterChangeFailure : "getTaskTypesFiltersFailure",
+    goToTaskDetails : "goToTaskDetails"
 }
 
 export default actionNames;
